@@ -2,8 +2,8 @@ import { Formik, ErrorMessage } from 'formik';
 import { Button, WholeForm, Label, Input } from './PhoneBookForm.styled';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/operations';
-import { selectItems } from 'redux/selectors';
+import { addContact } from 'redux/contacts-filter/operations';
+import { selectItems } from 'redux/contacts-filter/selectors';
 
 const phoneCheck =
   /^(([\\+]*[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{2,4}?[ \\-]*[0-9]{2,4}?$/;
@@ -14,7 +14,7 @@ const formSchema = Yup.object().shape({
     .max(50, 'Too Long!')
     .required('Name is required'),
 
-  phone: Yup.string()
+  number: Yup.string()
     .matches(
       phoneCheck,
       'Phone number must be min 4 digits. Can contain spaces, dashes and start with +'
@@ -26,7 +26,7 @@ const PhoneBookForm = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectItems);
 
-  const handleSubmit = ({ name, phone }, { resetForm }) => {
+  const handleSubmit = ({ name, number }, { resetForm }) => {
     const haveName = contacts.find(
       contact => contact.name.toLowerCase() === name.toLowerCase()
     );
@@ -35,7 +35,7 @@ const PhoneBookForm = () => {
       return;
     }
 
-    dispatch(addContact({ name, phone }));
+    dispatch(addContact({ name, number }));
 
     resetForm();
   };
@@ -45,7 +45,7 @@ const PhoneBookForm = () => {
       <Formik
         initialValues={{
           name: '',
-          phone: '',
+          number: '',
         }}
         validationSchema={formSchema}
         onSubmit={handleSubmit}
@@ -56,10 +56,10 @@ const PhoneBookForm = () => {
             <Input type="text" name="name" />
             <ErrorMessage name="name" component="div" />
           </Label>
-          <Label htmlFor="phone">
-            Phone
-            <Input type="tel" name="phone" />
-            <ErrorMessage name="phone" component="div" />
+          <Label htmlFor="number">
+            Number
+            <Input type="tel" name="number" />
+            <ErrorMessage name="number" component="div" />
           </Label>
           <Button type="submit">Add contact</Button>
         </WholeForm>
