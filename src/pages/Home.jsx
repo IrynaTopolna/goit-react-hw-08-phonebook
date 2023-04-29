@@ -1,8 +1,11 @@
+import { H1 } from './pages.styled';
+
 export default function Home() {
   return (
-    <h1>
-      Welcome to My phonebook App. <br />
-      Register or Log In to start.
-    </h1>
+    <H1>
+      Welcome to PhoneBook App
+      <br />
+      Register or LogIn to start
+    </H1>
   );
 }

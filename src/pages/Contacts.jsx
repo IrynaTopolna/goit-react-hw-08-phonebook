@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchContacts } from 'redux/contacts-filter/operations';
 import { selectContacts } from 'redux/contacts-filter/selectors';
 import { Title, Title2 } from './pages.styled';
-// import { Helmet } from 'react-helmet';
 
 export default function Contacts() {
   const dispatch = useDispatch();
@@ -18,16 +17,18 @@ export default function Contacts() {
 
   return (
     <>
-      {/* <Helmet> */}
-      <Title>My phonebook</Title>
-      {/* </Helmet> */}
+      <Title>My PhoneBook</Title>
       <PhoneBookForm />
 
       <Title2>My contacts</Title2>
       <Filter />
       {isLoading && !error && <p>Loading contacts...</p>}
       {error && <p>{error}</p>}
-      {items.length > 0 ? <ContactsList /> : <p>There is no contacts yet</p>}
+      {items.length > 0 ? (
+        <ContactsList />
+      ) : (
+        <p>You didn't add any contacts yet</p>
+      )}
     </>
   );
 }

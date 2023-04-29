@@ -24,7 +24,11 @@ export default function LoginForm() {
       </label>
       <label>
         Password
-        <input type="password" name="password" />
+        <input
+          type="password"
+          name="password"
+          autoComplete="current-password"
+        />
       </label>
       <button type="submit">Log In</button>
     </form>

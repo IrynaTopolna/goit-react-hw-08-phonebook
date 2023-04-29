@@ -1,5 +1,11 @@
 import styled from 'styled-components';
 
+export const H1 = styled.h1`
+  padding-top: 150px;
+  text-align: center;
+  color: #4b0d81;
+`;
+
 export const Title = styled.h1`
   font-size: 36px;
   color: #4b0d81;
