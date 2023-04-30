@@ -1,18 +1,19 @@
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { Button } from './Contact.styled';
+import { Button, Div, Name, Number } from './Contact.styled';
 import { deleteContact } from 'redux/contacts-filter/operations';
 
 const Contact = ({ name, number, id }) => {
   const dispatch = useDispatch();
 
   return (
-    <>
-      {name}: {number}
+    <Div>
+      <Name>{name}</Name>
+      <Number>{number}</Number>
       <Button type="button" onClick={() => dispatch(deleteContact(id))}>
         Delete
       </Button>
-    </>
+    </Div>
   );
 };
 

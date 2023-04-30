@@ -1,5 +1,12 @@
 import { Formik, ErrorMessage } from 'formik';
-import { Button, WholeForm, Label, Input } from './PhoneBookForm.styled';
+import {
+  Button,
+  WholeForm,
+  Input,
+  ErrorCover,
+  Text,
+  Cover,
+} from './PhoneBookForm.styled';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contacts-filter/operations';
@@ -41,7 +48,8 @@ const PhoneBookForm = () => {
   };
 
   return (
-    <>
+    <Cover>
+      <Text>Add contact</Text>
       <Formik
         initialValues={{
           name: '',
@@ -51,20 +59,18 @@ const PhoneBookForm = () => {
         onSubmit={handleSubmit}
       >
         <WholeForm>
-          <Label htmlFor="name">
-            Name
-            <Input type="text" name="name" />
-            <ErrorMessage name="name" component="div" />
-          </Label>
-          <Label htmlFor="number">
-            Number
-            <Input type="tel" name="number" />
-            <ErrorMessage name="number" component="div" />
-          </Label>
-          <Button type="submit">Add contact</Button>
+          <div>
+            <Input type="text" name="name" placeholder="Name" />
+            <ErrorMessage name="name" component={ErrorCover} />
+          </div>
+          <div>
+            <Input type="tel" name="number" placeholder="Number" />
+            <ErrorMessage name="number" component={ErrorCover} />
+          </div>
+          <Button type="submit">Add</Button>
         </WholeForm>
       </Formik>
-    </>
+    </Cover>
   );
 };
 

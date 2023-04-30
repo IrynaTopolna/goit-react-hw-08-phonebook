@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchContacts } from 'redux/contacts-filter/operations';
 import { selectContacts } from 'redux/contacts-filter/selectors';
-import { Title, Title2 } from './pages.styled';
+import { Cover, Text } from './pages.styled';
 
 export default function Contacts() {
   const dispatch = useDispatch();
@@ -17,17 +17,17 @@ export default function Contacts() {
 
   return (
     <>
-      <Title>My PhoneBook</Title>
-      <PhoneBookForm />
+      <Cover>
+        <PhoneBookForm />
+        <Filter />
+      </Cover>
 
-      <Title2>My contacts</Title2>
-      <Filter />
-      {isLoading && !error && <p>Loading contacts...</p>}
-      {error && <p>{error}</p>}
+      {isLoading && !error && <Text>Loading contacts...</Text>}
+      {error && <Text>{error}</Text>}
       {items.length > 0 ? (
         <ContactsList />
       ) : (
-        <p>You didn't add any contacts yet</p>
+        <Text>You didn't add any contacts yet</Text>
       )}
     </>
   );

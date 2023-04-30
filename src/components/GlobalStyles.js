@@ -38,7 +38,6 @@ img {
 }
 
 button {
-  display: block;
   cursor: pointer;
   border: none;
   border-radius: 4px;
